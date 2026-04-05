@@ -45,7 +45,7 @@ pytest -v
 
 ## Example
 
-See the **strava-test** project for usage examples.
+See the [strava-test](https://github.com/davidjunyent/strava-test) project for usage examples.
 
 ## License
 
