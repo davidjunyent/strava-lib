@@ -114,9 +114,12 @@ def format_activity_markdown(activity: Dict) -> str:
     
     # Add blank line before metadata
     markdown_parts.append("")
-    
+        
     # Add activity type
     markdown_parts.append(f"**Type:** {activity_type}  ")
+    
+    # Add activity id    
+    markdown_parts.append(f"**Activity ID:** {activity_id}  ")
     
     # Add remaining metadata
     markdown_parts.append(f"**Date:** {formatted_date}  ")
