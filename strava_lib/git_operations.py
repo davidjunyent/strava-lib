@@ -45,6 +45,33 @@ def get_activity_file_path(activity: Dict, repo_path: str) -> Path:
     return activity_dir / f"activity-{counter}.md"
 
 
+def get_activity_file_path_by_id(activity: Dict) -> Path:
+    """
+    Get file path using activity ID to prevent duplicates on updates.
+
+    Returns path relative to repo root: {year}/{month}/{day}/activity-{id}.md
+
+    Args:
+        activity: Activity data dictionary
+
+    Returns:
+        Path object for the activity markdown file (relative to repo root)
+
+    Example:
+        >>> activity = {"id": 123456, "start_date_local": "2026-05-01T14:32:15Z"}
+        >>> get_activity_file_path_by_id(activity)
+        PosixPath('2026/05/01/activity-123456.md')
+    """
+    date = parse_activity_date(activity["start_date_local"])
+    activity_id = activity["id"]
+
+    year = date.strftime("%Y")
+    month = date.strftime("%m")
+    day = date.strftime("%d")
+
+    return Path(year) / month / day / f"activity-{activity_id}.md"
+
+
 def save_activity_file(markdown_content: str, file_path: Path, repo_path: str) -> Path:
     """
     Save formatted markdown to activity file.
